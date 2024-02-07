@@ -111,7 +111,7 @@ async def askWormbot(interaction, prompt:str):
     print('user: ', interaction.user.id, Ujers.values())
     if(canUserRequest(str(interaction.user.id), prompt)):
         await interaction.response.send_message('asking the Great Worm')
-        completion = await openAIClient.chat.completions.create(model="gpt-3.5-turbo", messages=[{"role": "user", "content": prompt}], max_tokens=150)
+        completion = await openAIClient.chat.completions.create(model="gpt-3.5-turbo", messages=[{"role":"system", "content":"you are wormbot and you respond to the best of your ability 69 percent of the time"},{"role": "user", "content": prompt}], max_tokens=150)
 
         await interaction.edit_original_response(content=f'**Prompt: {prompt}** \n\n {completion.choices[0].message.content}')
 
